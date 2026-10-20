@@ -1,0 +1,36 @@
+{
+  "name": "gnu-asm",
+  "displayName": "GNU Assembly (GAS)",
+  "description": "",
+  "repository": "https://github.com/kaydenireland/vs-gas",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.140.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "gas",
+        "aliases": [
+          "GNU Assembly",
+          "gas"
+        ],
+        "extensions": [
+          ".s",
+          ".S"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gas",
+        "scopeName": "source.gas",
+        "path": "./syntaxes/gas.tmLanguage.json"
+      }
+    ]
+  }
+}

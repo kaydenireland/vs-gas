@@ -1,0 +1,123 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "GNU Assembly",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#directives"
+		},
+		{
+			"include": "#labels"
+		},
+		{
+			"include": "#instructions"
+		},
+		{
+			"include": "#registers"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#immediate"
+		}
+	],
+	"repository": {
+		"comments": {
+				"patterns": [
+					{
+						"name": "comment.line.number-sign.gas",
+						"match": "#.*$"
+					}
+				]
+			},
+		"strings": {
+			"name": "string.quoted.double.gas",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.gas",
+					"match": "\\\\."
+				}
+			]
+		},
+		"directives": {
+            "patterns": [
+                {
+                    "name": "keyword.other.directive.gas",
+                    "match": "\\.[A-Za-z_][A-Za-z0-9_]*\\b"
+                }
+            ]
+        },
+        "labels": {
+            "patterns": [
+                {
+                    "name": "entity.name.label.gas",
+                    "match": "^\\s*[A-Za-z_.$][A-Za-z0-9_.$]*:"
+                }
+            ]
+        },
+		"instructions": {
+            "patterns": [
+                {
+                    "name": "keyword.control.gas",
+                    "match": "\\b(?:j[a-z]+|call[q]?|ret[q]?|loop[a-z]*|int|iret[a-z]*|syscall)\\b"
+                },
+                {
+                    "name": "keyword.operator.instruction.gas",
+                    "match": "\\b(?:mov[a-z]*|lea[a-z]*|push[a-z]*|pop[a-z]*|add[a-z]*|sub[a-z]*|imul[a-z]*|idiv[a-z]*|div[a-z]*|cmp[a-z]*|test[a-z]*|xor[a-z]*|or[a-z]*|and[a-z]*|not[a-z]*|neg[a-z]*|inc[a-z]*|dec[a-z]*|shl[a-z]*|shr[a-z]*|sar[a-z]*|nop|hlt|cli|sti|cld|std|lods[a-z]*|stos[a-z]*|rep[a-z]*)\\b"
+                }
+            ]
+        },
+        "registers": {
+            "patterns": [
+                {
+                    "name": "variable.language.register.gas",
+                    "match": "%(?:cs|ds|es|fs|gs|ss|[er]?(?:ax|bx|cx|dx|si|di|bp|sp)|ip|flags|[abcd][lh]|r(?:[0-9]+[dwb]?|ip|flags)|[xyz]mm[0-9]+|mm[0-7]|cr[0-9]+|dr[0-9]+|st(?:\\([0-7]\\))?)\\b"
+                }
+            ]
+        },
+		"numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.hex.gas",
+                    "match": "\\b0[xX][0-9a-fA-F]+\\b"
+                },
+                {
+                    "name": "constant.numeric.binary.gas",
+                    "match": "\\b0[bB][01]+\\b"
+                },
+                {
+                    "name": "constant.numeric.decimal.gas",
+                    "match": "\\b[0-9]+\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.gas",
+                    "match": "\\b(?:\\.\\.?|[A-Z_][A-Z0-9_]*)\\b"
+                }
+            ]
+        },
+		"immediate": {
+			"patterns": [
+				{
+					"name": "punctuation.definition.operand.immediate.gas",
+					"match": "\\$(?=[-+]?(?:0[xX][0-9a-fA-F]+|0[bB][01]+|[0-9]+|'[^']*'))"
+				}
+			]
+		}
+	},
+	"scopeName": "source.gas"
+}
